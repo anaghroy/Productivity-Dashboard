@@ -34,14 +34,14 @@ body {
   width: 100%;
   background-color: var(--sec);
   font-family: aeonik;
-  nav {
-    position: fixed;
-    width: 100%;
-    height: 60px;
-    background-color: var(--tri2);
-  }
+  // nav {
+  //   position: fixed;
+  //   width: 100%;
+  //   height: 60px;
+  //   background-color: var(--tri2);
+  // }
 
-  .allElems {
+  section.allElems {
     height: 100%;
     width: 100%;
     padding: 40px;
@@ -49,33 +49,43 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: 40px;
-  }
-  .elem {
-    height: 400px;
-    width: 330px;
-    background-color: var(--tri1);
-    border-radius: 10px;
-    font-size: 30px;
-    color: white;
-    overflow: hidden;
-    position: relative;
-    transition: all ease 0.2s;
-    cursor: pointer;
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-    h2 {
-      position: absolute;
-      bottom: 4%;
-      right: 5%;
-      font-weight: 500;
-      font-size: 20px;
+    gap: 30px;
+    position: absolute;
+    .elem {
+      height: 350px;
+      width: 260px;
+      background-color: var(--tri1);
+      border-radius: 10px;
+      font-size: 30px;
+      color: white;
+      overflow: hidden;
+      position: relative;
+      transition: all ease 0.2s;
+      cursor: pointer;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      h2 {
+        position: absolute;
+        bottom: 4%;
+        right: 5%;
+        font-weight: 500;
+        font-size: 30px;
+      }
     }
   }
   .elem:active {
     scale: 0.97;
+  }
+  .fullElem{
+    height: 100%;
+    width: 100%;
+    background-color: #381c0a;
+    padding: 40px;
+    font-size: 30px;
+    display: none;
+    position: absolute;
   }
 }
