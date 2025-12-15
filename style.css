@@ -1,10 +1,19 @@
+:root {
+  --pri: #f8f4e1;
+  --sec: #381c0a;
+  --tri1: #feba17;
+  --tri2: #74512d;
+}
+
 @font-face {
-  font-family: Regularfont;
+  font-family: aeonik;
   src: url(./fonts/fonnts.com-Aeonik-Regular.ttf);
+  font-weight: 200;
 }
 @font-face {
-  font-family: Boldfont;
+  font-family: aeonik;
   src: url(./fonts/fonnts.com-Aeonik-Bold.ttf);
+  font-weight: 500;
 }
 * {
   margin: 0;
@@ -22,6 +31,50 @@ body {
 #main {
   height: 100%;
   width: 100%;
-  background-color: #000;
-  font-family: Regularfont;
+  background-color: var(--sec);
+  font-family: aeonik;
+}
+#main nav {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background-color: var(--tri2);
+}
+#main .allElems {
+  height: 100%;
+  width: 100%;
+  padding: 40px;
+  padding-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+}
+#main .elem {
+  height: 400px;
+  width: 330px;
+  background-color: var(--tri1);
+  border-radius: 10px;
+  font-size: 30px;
+  color: white;
+  overflow: hidden;
+  position: relative;
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+#main .elem img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#main .elem h2 {
+  position: absolute;
+  bottom: 4%;
+  right: 5%;
+  font-weight: 500;
+  font-size: 20px;
+}
+#main .elem:active {
+  scale: 0.97;
 }/*# sourceMappingURL=style.css.map */
