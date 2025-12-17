@@ -30,11 +30,23 @@ body {
   width: 100%;
 }
 
+/*scrollbar-background*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(90, 90, 90, 0.523);
+  border-radius: 20px;
+}
+
 #main {
   height: 100%;
   width: 100%;
   background-color: var(--sec);
   font-family: aeonik;
+  /*Daily-Planner*/
+  /*Motivational*/
 }
 #main section.allElems {
   height: 100%;
@@ -244,4 +256,77 @@ body {
 #main .todo-list-fullpage .todo-container .mark-imp label {
   font-size: 19px;
   font-weight: 200;
+}
+#main .daily-planner-fullpage h2 {
+  font-size: 60px;
+}
+#main .daily-planner-fullpage .day-planner {
+  background-color: var(--tri2);
+  height: 85%;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow: auto;
+  padding: 30px;
+}
+#main .daily-planner-fullpage .day-planner .day-planner-time {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 49%;
+  margin-bottom: 15px;
+}
+#main .daily-planner-fullpage .day-planner .day-planner-time p {
+  position: absolute;
+  top: 12%;
+  left: 2%;
+  font-size: 16px;
+  color: var(--tri1);
+}
+#main .daily-planner-fullpage .day-planner .day-planner-time input {
+  padding: 20px 45px;
+  width: 100%;
+  background-color: var(--sec);
+  border-radius: 5px;
+  border: none;
+  font-size: 32px;
+  padding-top: 34px;
+  outline: none;
+}
+#main .motivational-fullpage {
+  display: block;
+  position: relative;
+}
+#main .motivational-fullpage .motivation-container {
+  height: 500px;
+  width: 500px;
+  background-color: var(--tri2);
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#main .motivational-fullpage .motivation-container .motivation-wrapper {
+  z-index: 10;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: var(--tri2);
+  border-radius: 50px;
+}
+#main .motivational-fullpage .motivation-container::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: var(--tri1);
+  border-radius: 50px;
+  scale: 1.1;
+  z-index: 8;
+  border-radius: 50px;
 }/*# sourceMappingURL=style.css.map */

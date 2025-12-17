@@ -18,6 +18,7 @@ function openfeatures() {
 
 openfeatures();
 
+// To-do list
 function todoList() {
   let currentTask = [];
 
@@ -73,3 +74,39 @@ function todoList() {
   });
 }
 todoList();
+
+// Daily-Planner
+function dailyPlanner() {
+  let dayPlanner = document.querySelector(".day-planner");
+  let dayPlanData = JSON.parse(localStorage.getItem("dayPlanData")) || {};
+
+  let hours = Array.from(
+    { length: 18 },
+    (elem, index) => `${6 + index}:00 - ${7 + index}:00`
+  );
+
+  // Rendering into Daily Planner
+  let wholeDaySum = "";
+  hours.forEach(function (elem, index) {
+    let savedData = dayPlanData[index] || "";
+    wholeDaySum += `<div class="day-planner-time">
+            <p>${elem}</p>
+            <input id=${index} type="text" placeholder="...." value=${savedData}>
+          </div>`;
+  });
+
+  dayPlanner.innerHTML = wholeDaySum;
+
+  //Storing into LocalStorage
+  let dayPlannerInput = document.querySelectorAll(".day-planner input");
+
+  dayPlannerInput.forEach(function (elem) {
+    elem.addEventListener("input", function () {
+      dayPlanData[elem.id] = elem.value;
+
+      localStorage.setItem("dayPlanData", JSON.stringify(dayPlanData));
+    });
+  });
+}
+
+dailyPlanner()
