@@ -109,4 +109,19 @@ function dailyPlanner() {
   });
 }
 
-dailyPlanner()
+dailyPlanner();
+
+function motivationalQuote() {
+  let motivationQuoteContent = document.querySelector(".motivation-2 h1");
+  let motivationAuthor = document.querySelector(".motivation-3 h2");
+
+  async function fetchQuote() {
+    let respone = await fetch("http://api.quotable.io/random");
+    let data = await respone.json();
+    motivationQuoteContent.innerHTML = data.content;
+    motivationAuthor.innerHTML = data.author;
+  }
+
+  fetchQuote();
+}
+motivationalQuote();

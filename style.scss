@@ -296,25 +296,76 @@ body {
     }
   }
   /*Motivational*/
+  .motivation-fullPage-container {
+    /*Main-wrapper*/
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .motivational-fullpage {
-    display: block;
     position: relative;
     .motivation-container {
       height: 500px;
-      width: 500px;
+      width: 80%;
       background-color: var(--tri2);
       border-radius: 50px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
+
       .motivation-wrapper {
         z-index: 10;
         position: absolute;
-        height: 100%;
         width: 100%;
-        background-color: var(--tri2);
-        border-radius: 50px;
+        background-color: var(--pri);
+        border-radius: 30px;
+        padding: 17px;
+        img {
+          position: absolute;
+          right: 5%;
+          top: 5%;
+          opacity: 0.2;
+          height: 120px;
+        }
+        .motivation-1 {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          h2 {
+            width: fit-content;
+            background-color: var(--tri2);
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 40px;
+            font-weight: 500;
+            text-align: right;
+          }
+        }
+        .motivation-2 {
+          padding: 10px;
+          margin-top: 40px;
+          margin-bottom: 40px;
+          h1 {
+            font-size: 60px;
+            font-weight: 200;
+            color: var(--sec);
+          }
+        }
+        .motivation-3 {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+
+          h2 {
+            width: fit-content;
+            background-color: var(--tri2);
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 40px;
+            font-weight: 500;
+            text-align: right;
+          }
+        }
       }
     }
     .motivation-container::after {
@@ -324,9 +375,10 @@ body {
       position: absolute;
       background-color: var(--tri1);
       border-radius: 50px;
-      scale: 1.1;
+      scale: 1.15;
       z-index: 8;
       border-radius: 50px;
+      filter: blur(100px);
     }
   }
 }
