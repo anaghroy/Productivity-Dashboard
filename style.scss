@@ -6,6 +6,7 @@
   --red: red;
   --green: green;
   --blue: rgb(48, 48, 246);
+  --black: black;
 }
 
 @font-face {
@@ -47,16 +48,57 @@ body {
   background-color: var(--sec);
   font-family: aeonik;
 
-  section.allElems {
+  .allElems {
     height: 100%;
     width: 100%;
     padding: 40px;
-    padding-top: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 30px;
+    overflow: auto;
     position: absolute;
+    header {
+      background-image: url(https://images.unsplash.com/photo-1601524544616-756e266ef659?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+      background-position: center;
+      background-size: cover;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px;
+      .header1 h2 {
+        font-size: 2rem;
+        font-weight: 200;
+      }
+      .header1 h1 {
+        font-size: 5rem;
+        margin-bottom: 40px;
+      }
+      .header1 h4 {
+        font-size: 3rem;
+        font-weight: 200;
+      }
+      .header2 h2 {
+        font-size: 2.5rem;
+      }
+      .header2 h4 {
+        font-size: 2.5rem;
+        font-weight: 200;
+        opacity: 0.8;
+        margin-bottom: 30px;
+      }
+      .header2 h3 {
+        font-size: 1.5rem;
+        font-weight: 200;
+        opacity: 0.8;
+        
+      }
+    }
+    .allFeatures {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 30px;
+    }
     .elem {
       height: 350px;
       width: 260px;
@@ -68,7 +110,7 @@ body {
       position: relative;
       transition: all ease 0.2s;
       cursor: pointer;
-      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 5px 5px 20px var(--black);
       img {
         height: 100%;
         width: 100%;
@@ -89,7 +131,7 @@ body {
   .fullElem {
     height: 100%;
     width: 100%;
-    background-color: #381c0a;
+    background-color: var(--sec);
     padding: 40px;
     display: none;
     position: absolute;
@@ -219,7 +261,7 @@ body {
         button {
           padding: 15px 30px;
           color: var(--pri);
-          background-color: green;
+          background-color: var(--green);
           font-size: 15px;
           border-radius: 5px;
           border: none;
@@ -413,13 +455,14 @@ body {
         margin: 10px;
         border: none;
         border-radius: 5px;
-        box-shadow: 5px 5px 0px black;
+        box-shadow: 5px 5px 0px var(--black);
         transition: all ease 0.1s;
         cursor: pointer;
       }
       button:active {
-        box-shadow: 0px 0px 0px black;
+        box-shadow: 0px 0px 0px var(--black);
       }
     }
   }
+  /*Theme Change*/
 }

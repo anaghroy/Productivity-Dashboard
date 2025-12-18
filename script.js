@@ -128,68 +128,154 @@ function motivationalQuote() {
 motivationalQuote();
 
 // Pomodoro-Timer
-let timer = document.querySelector(".pomo-timer h1");
-let startBtn = document.querySelector(".pomo-timer .start-timer");
-let pauseBtn = document.querySelector(".pomo-timer .pause-timer");
-let resetBtn = document.querySelector(".pomo-timer .reset-timer");
-let session = document.querySelector(".pomodoro-fullpage .session");
-let isWorkSession = true;
+function pomodoroTimer() {
+  let timer = document.querySelector(".pomo-timer h1");
+  let startBtn = document.querySelector(".pomo-timer .start-timer");
+  let pauseBtn = document.querySelector(".pomo-timer .pause-timer");
+  let resetBtn = document.querySelector(".pomo-timer .reset-timer");
+  let session = document.querySelector(".pomodoro-fullpage .session");
+  let isWorkSession = true;
 
-let timerInterval = null;
-let totalSeconds = 25 * 60;
+  let timerInterval = null;
+  let totalSeconds = 25 * 60;
 
-function updateTime() {
-  let minutes = Math.floor(totalSeconds / 60);
-  let seconds = totalSeconds % 60;
+  function updateTime() {
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
 
-  timer.innerHTML = `${String(minutes).padStart("2", 0)} : ${String(
-    seconds
-  ).padStart("2", 0)}`;
+    timer.innerHTML = `${String(minutes).padStart("2", 0)} : ${String(
+      seconds
+    ).padStart("2", 0)}`;
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+
+    if (isWorkSession) {
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          updateTime();
+        } else {
+          isWorkSession = false;
+          clearInterval(timerInterval);
+          timer.innerHTML = "05:00";
+          session.innerHTML = "Take a Break";
+          session.style.backgroundColor = "var(--blue)";
+          totalSeconds = 25 * 60;
+        }
+      }, 1000);
+    } else {
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          updateTime();
+        } else {
+          isWorkSession = true;
+          clearInterval(timerInterval);
+          timer.innerHTML = "25:00";
+          session.innerHTML = "Work Session";
+          session.style.backgroundColor = "var(--green)";
+          totalSeconds = 5 * 60;
+        }
+      }, 1000);
+    }
+  }
+
+  function pauseTimer() {
+    clearInterval(timerInterval);
+  }
+
+  function resetTimer() {
+    clearInterval(timerInterval);
+    totalSeconds = 25 * 60;
+    updateTime();
+  }
+  startBtn.addEventListener("click", startTimer);
+  pauseBtn.addEventListener("click", pauseTimer);
+  resetBtn.addEventListener("click", resetTimer);
 }
+pomodoroTimer();
 
-function startTimer() {
-  clearInterval(timerInterval);
+/*Fontpage*/
+let header1Time = document.querySelector(".header1 h1");
+let header1Date = document.querySelector(".header1 h2");
+let header2Temp = document.querySelector(".header2 h2");
+let header2Condition = document.querySelector(".header2 h4");
+let precipitation = document.querySelector(".header2 .precipitation");
+let humidity = document.querySelector(".header2 .humidity");
+let wind = document.querySelector(".header2 .wind");
 
-  if (isWorkSession) {
-    timerInterval = setInterval(() => {
-      if (totalSeconds > 0) {
-        totalSeconds--;
-        updateTime();
-      } else {
-        isWorkSession = false;
-        clearInterval(timerInterval);
-        timer.innerHTML = "05:00";
-        session.innerHTML = "Take a Break";
-        session.style.backgroundColor = "var(--blue)";
-        totalSeconds = 25 * 60;
-      }
-    }, 1000);
+let data = null;
+
+async function weatherAPICall(city) {
+  let APIkey = "1e928816884386acbabed2e3f63b9d69";
+  let response = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIkey}`
+  );
+  let data = await response.json();
+  console.log(data);
+  header2Temp.innerHTML = `${data.main.temp}°C`;
+  header2Condition.innerHTML = `${data.weather[0].main}`;
+  precipitation.innerHTML = `Pressure: ${Math.floor(data.main.pressure)}%`;
+  wind.innerHTML = `Wind: ${data.wind.speed} km/h`;
+  humidity.innerHTML = `Humidity: ${data.main.humidity}`;
+}
+weatherAPICall("Guwahati");
+
+function timeDate() {
+  const totaldaysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const totalMonths = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let date = new Date();
+  let dayOfWeek = totaldaysOfWeek[date.getDay()];
+  let hours = date.getDay();
+  let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
+  let currentdate = date.getDate();
+  let month = totalMonths[date.getMonth()];
+  let year = date.getFullYear();
+
+  header1Date.innerHTML = `${currentdate} ${month} ${year}`;
+
+  if (hours > 12) {
+    header1Time.innerHTML = `${dayOfWeek}, ${String(hours - 12).padStart(
+      "2",
+      "0"
+    )}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart(
+      "2",
+      "0"
+    )} PM`;
   } else {
-    timerInterval = setInterval(() => {
-      if (totalSeconds > 0) {
-        totalSeconds--;
-        updateTime();
-      } else {
-        isWorkSession = true;
-        clearInterval(timerInterval);
-        timer.innerHTML = "25:00";
-        session.innerHTML = "Work Session";
-        session.style.backgroundColor = "var(--green)";
-        totalSeconds = 5 * 60;
-      }
-    }, 1000);
+    header1Time.innerHTML = `${dayOfWeek}, ${String(hours).padStart(
+      "2",
+      "0"
+    )}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart(
+      "2",
+      "0"
+    )} AM`;
   }
 }
-
-function pauseTimer() {
-  clearInterval(timerInterval);
-}
-
-function resetTimer() {
-  clearInterval(timerInterval);
-  totalSeconds = 25 * 60;
-  updateTime();
-}
-startBtn.addEventListener("click", startTimer);
-pauseBtn.addEventListener("click", pauseTimer);
-resetBtn.addEventListener("click", resetTimer);
+setInterval(() => {
+  timeDate();
+}, 1000);
