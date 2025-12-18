@@ -111,6 +111,7 @@ function dailyPlanner() {
 
 dailyPlanner();
 
+// Motivational-Quote
 function motivationalQuote() {
   let motivationQuoteContent = document.querySelector(".motivation-2 h1");
   let motivationAuthor = document.querySelector(".motivation-3 h2");
@@ -125,3 +126,70 @@ function motivationalQuote() {
   fetchQuote();
 }
 motivationalQuote();
+
+// Pomodoro-Timer
+let timer = document.querySelector(".pomo-timer h1");
+let startBtn = document.querySelector(".pomo-timer .start-timer");
+let pauseBtn = document.querySelector(".pomo-timer .pause-timer");
+let resetBtn = document.querySelector(".pomo-timer .reset-timer");
+let session = document.querySelector(".pomodoro-fullpage .session");
+let isWorkSession = true;
+
+let timerInterval = null;
+let totalSeconds = 25 * 60;
+
+function updateTime() {
+  let minutes = Math.floor(totalSeconds / 60);
+  let seconds = totalSeconds % 60;
+
+  timer.innerHTML = `${String(minutes).padStart("2", 0)} : ${String(
+    seconds
+  ).padStart("2", 0)}`;
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+
+  if (isWorkSession) {
+    timerInterval = setInterval(() => {
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        updateTime();
+      } else {
+        isWorkSession = false;
+        clearInterval(timerInterval);
+        timer.innerHTML = "05:00";
+        session.innerHTML = "Take a Break";
+        session.style.backgroundColor = "var(--blue)";
+        totalSeconds = 25 * 60;
+      }
+    }, 1000);
+  } else {
+    timerInterval = setInterval(() => {
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        updateTime();
+      } else {
+        isWorkSession = true;
+        clearInterval(timerInterval);
+        timer.innerHTML = "25:00";
+        session.innerHTML = "Work Session";
+        session.style.backgroundColor = "var(--green)";
+        totalSeconds = 5 * 60;
+      }
+    }, 1000);
+  }
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  totalSeconds = 25 * 60;
+  updateTime();
+}
+startBtn.addEventListener("click", startTimer);
+pauseBtn.addEventListener("click", pauseTimer);
+resetBtn.addEventListener("click", resetTimer);

@@ -4,6 +4,8 @@
   --tri1: #feba17;
   --tri2: #74512d;
   --red: red;
+  --green: green;
+  --blue: rgb(48, 48, 246);
 }
 
 @font-face {
@@ -44,12 +46,6 @@ body {
   width: 100%;
   background-color: var(--sec);
   font-family: aeonik;
-  // nav {
-  //   position: fixed;
-  //   width: 100%;
-  //   height: 60px;
-  //   background-color: var(--tri2);
-  // }
 
   section.allElems {
     height: 100%;
@@ -295,7 +291,7 @@ body {
       }
     }
   }
-  /*Motivational*/
+  /*Motivational Container*/
   .motivation-fullPage-container {
     /*Main-wrapper*/
     height: 100%;
@@ -304,10 +300,12 @@ body {
     align-items: center;
     justify-content: center;
   }
+  /*Motivational fullpage*/
   .motivational-fullpage {
+    // display: block;
     position: relative;
     .motivation-container {
-      height: 500px;
+      height: 400px;
       width: 80%;
       background-color: var(--tri2);
       border-radius: 50px;
@@ -346,7 +344,7 @@ body {
           margin-top: 40px;
           margin-bottom: 40px;
           h1 {
-            font-size: 60px;
+            font-size: 40px;
             font-weight: 200;
             color: var(--sec);
           }
@@ -361,7 +359,7 @@ body {
             background-color: var(--tri2);
             padding: 30px;
             border-radius: 20px;
-            font-size: 40px;
+            font-size: 30px;
             font-weight: 500;
             text-align: right;
           }
@@ -379,6 +377,49 @@ body {
       z-index: 8;
       border-radius: 50px;
       filter: blur(100px);
+    }
+  }
+
+  /*Pomodoro-fullpage*/
+  .pomodoro-fullpage {
+    // display: block;
+    position: relative;
+    h2 {
+      font-size: 60px;
+    }
+    .session {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      background-color: var(--green);
+      padding: 15px 40px;
+      font-size: 30px;
+      border-radius: 5px;
+    }
+    .pomo-timer {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      h1 {
+        font-size: 8rem;
+      }
+      button {
+        background-color: var(--tri2);
+        padding: 15px 40px;
+        font-size: 2rem;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 5px 5px 0px black;
+        transition: all ease 0.1s;
+        cursor: pointer;
+      }
+      button:active {
+        box-shadow: 0px 0px 0px black;
+      }
     }
   }
 }
