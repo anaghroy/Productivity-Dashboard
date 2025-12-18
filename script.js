@@ -198,84 +198,117 @@ function pomodoroTimer() {
 pomodoroTimer();
 
 /*Fontpage*/
-let header1Time = document.querySelector(".header1 h1");
-let header1Date = document.querySelector(".header1 h2");
-let header2Temp = document.querySelector(".header2 h2");
-let header2Condition = document.querySelector(".header2 h4");
-let precipitation = document.querySelector(".header2 .precipitation");
-let humidity = document.querySelector(".header2 .humidity");
-let wind = document.querySelector(".header2 .wind");
+function weatherFunctionality() {
+  let header1Time = document.querySelector(".header1 h1");
+  let header1Date = document.querySelector(".header1 h2");
+  let header2Temp = document.querySelector(".header2 h2");
+  let header2Condition = document.querySelector(".header2 h4");
+  let precipitation = document.querySelector(".header2 .precipitation");
+  let humidity = document.querySelector(".header2 .humidity");
+  let wind = document.querySelector(".header2 .wind");
 
-let data = null;
+  let data = null;
 
-async function weatherAPICall(city) {
-  let APIkey = "1e928816884386acbabed2e3f63b9d69";
-  let response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIkey}`
-  );
-  let data = await response.json();
-  console.log(data);
-  header2Temp.innerHTML = `${data.main.temp}°C`;
-  header2Condition.innerHTML = `${data.weather[0].main}`;
-  precipitation.innerHTML = `Pressure: ${Math.floor(data.main.pressure)}%`;
-  wind.innerHTML = `Wind: ${data.wind.speed} km/h`;
-  humidity.innerHTML = `Humidity: ${data.main.humidity}`;
-}
-weatherAPICall("Guwahati");
+  async function weatherAPICall(city) {
+    let APIkey = "1e928816884386acbabed2e3f63b9d69";
+    let response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIkey}`
+    );
+    let data = await response.json();
 
-function timeDate() {
-  const totaldaysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const totalMonths = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let date = new Date();
-  let dayOfWeek = totaldaysOfWeek[date.getDay()];
-  let hours = date.getDay();
-  let minutes = date.getMinutes();
-  let seconds = date.getSeconds();
-  let currentdate = date.getDate();
-  let month = totalMonths[date.getMonth()];
-  let year = date.getFullYear();
-
-  header1Date.innerHTML = `${currentdate} ${month} ${year}`;
-
-  if (hours > 12) {
-    header1Time.innerHTML = `${dayOfWeek}, ${String(hours - 12).padStart(
-      "2",
-      "0"
-    )}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart(
-      "2",
-      "0"
-    )} PM`;
-  } else {
-    header1Time.innerHTML = `${dayOfWeek}, ${String(hours).padStart(
-      "2",
-      "0"
-    )}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart(
-      "2",
-      "0"
-    )} AM`;
+    header2Temp.innerHTML = `${data.main.temp}°C`;
+    header2Condition.innerHTML = `${data.weather[0].main}`;
+    precipitation.innerHTML = `Pressure: ${Math.floor(data.main.pressure)}%`;
+    wind.innerHTML = `Wind: ${data.wind.speed} km/h`;
+    humidity.innerHTML = `Humidity: ${data.main.humidity}`;
   }
+  weatherAPICall("Guwahati");
+
+  function timeDate() {
+    const totaldaysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const totalMonths = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let date = new Date();
+    let dayOfWeek = totaldaysOfWeek[date.getDay()];
+    let hours = date.getDay();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let currentdate = date.getDate();
+    let month = totalMonths[date.getMonth()];
+    let year = date.getFullYear();
+
+    header1Date.innerHTML = `${currentdate} ${month} ${year}`;
+
+    if (hours > 12) {
+      header1Time.innerHTML = `${dayOfWeek}, ${String(hours - 12).padStart(
+        "2",
+        "0"
+      )}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart(
+        "2",
+        "0"
+      )} PM`;
+    } else {
+      header1Time.innerHTML = `${dayOfWeek}, ${String(hours).padStart(
+        "2",
+        "0"
+      )}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart(
+        "2",
+        "0"
+      )} AM`;
+    }
+  }
+  setInterval(() => {
+    timeDate();
+  }, 1000);
 }
-setInterval(() => {
-  timeDate();
-}, 1000);
+
+weatherFunctionality();
+
+// Theme Changing
+
+let theme = document.querySelector(".theme");
+let rootElement = document.documentElement;
+
+let flag = 0;
+
+theme.addEventListener("click", function () {
+  if (flag == 0) {
+    rootElement.style.setProperty("--pri", "#f8f4e1");
+    rootElement.style.setProperty("--sec", "#222831");
+    rootElement.style.setProperty("--tri1", "#948979");
+    rootElement.style.setProperty("--tri2", "#393e46");
+    flag = 1;
+  } else if (flag == 1) {
+    rootElement.style.setProperty("--pri", "#f8f4e1");
+    rootElement.style.setProperty("--sec", "#381c0a");
+    rootElement.style.setProperty("--tri1", "#feba17");
+    rootElement.style.setProperty("--tri2", "#74512d");
+    flag = 2;
+  }else if(flag == 2){
+    rootElement.style.setProperty("--pri", "#f8f4e1");
+    rootElement.style.setProperty("--sec", "#381c0a");
+    rootElement.style.setProperty("--tri1", "#feba17");
+    rootElement.style.setProperty("--tri2", "#74512d");
+    flag = 0;
+  }
+});

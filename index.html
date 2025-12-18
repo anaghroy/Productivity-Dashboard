@@ -14,6 +14,14 @@
   </head>
   <body>
     <div id="main">
+      <nav>
+        <div class="nav-in">
+          <h1>Productivity Dashboard</h1>
+          <div class="theme">
+            <h4>Change theme</h4>
+          </div>
+        </div>
+      </nav>
       <section class="allElems">
         <header>
           <div class="header1">
@@ -137,7 +145,34 @@
       </section>
       <section class="fullElem daily-goals-fullpage">
         <button class="back" id="4">Close</button>
-        <h1>Daily Goals</h1>
+        <h2>Daily Goals</h2>
+        <div class="daily-goals-container">
+          <div class="addTask">
+            <form action="#">
+              <input
+                id="task-input"
+                type="text"
+                placeholder="Enter Task"
+                required
+              />
+              <textarea
+                placeholder="Enter details"
+                name=""
+                id=""
+                cols="5"
+                rows="5"
+              ></textarea>
+              <div class="mark-imp">
+                <input type="checkbox" name="checkbox" id="check" />
+                <label for="check">Mark as Important!</label>
+              </div>
+              <button>Add Goals</button>
+            </form>
+          </div>
+          <div class="allTask">
+            <!--renderTask()-->
+          </div>
+        </div>
       </section>
     </div>
     <script src="script.js"></script>
